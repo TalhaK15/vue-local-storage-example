@@ -1,28 +1,56 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+  <v-app>
+    <v-main>
+      <v-container>
+        <v-row>
+          <v-col cols="4">
+            <AddPost @updatePosts="updatePosts($event)" />
+          </v-col>
+          <v-col cols="8" v-if="posts != []">
+            <v-container>
+              <v-row>
+                <v-col cols="6" v-for="(post,i) in posts" :key="i">
+                  <Post
+                    @updatePosts="updatePosts($event)"
+                    :image="post.image"
+                    :title="post.title"
+                    :date="post.date"
+                    :text="post.text"
+                  />
+                </v-col>
+              </v-row>
+            </v-container>
+          </v-col>
+        </v-row>
+      </v-container>
+    </v-main>
+  </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import AddPost from "./components/AddPost"
+import Post from "./components/Post"
 
 export default {
-  name: 'App',
+  name: "App",
+
   components: {
-    HelloWorld
-  }
+    AddPost,
+    Post,
+  },
+  data: () => ({
+    posts: [],
+  }),
+  methods: {
+    updatePosts(e) {
+      this.posts = e
+    },
+  },
+  created() {
+    let posts = localStorage.getItem("posts")
+    if (posts) {
+      this.posts = JSON.parse(posts)
+    }
+  },
 }
 </script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
