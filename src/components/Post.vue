@@ -5,8 +5,17 @@
     <v-card-subtitle>{{date}}</v-card-subtitle>
     <v-card-text>{{text}}</v-card-text>
     <v-card-actions>
-      <v-btn @click="updatePost()" color="green darken-1 white--text">Update</v-btn>
-      <v-btn @click="deletePost()" color="red darken-1 white--text">Delete</v-btn>
+      <v-container>
+        <v-row>
+          <v-col xs="12" sm="12" md="6" cols="6">
+            <v-btn @click="updatePost()" color="green darken-1 white--text">Update</v-btn>
+          </v-col>
+          <v-spacer />
+          <v-col cols="6">
+            <v-btn @click="deletePost()" color="red darken-1 white--text">Delete</v-btn>
+          </v-col>
+        </v-row>
+      </v-container>
     </v-card-actions>
   </v-card>
 </template>

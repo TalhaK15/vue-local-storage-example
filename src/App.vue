@@ -8,8 +8,8 @@
           </v-col>
           <v-col cols="8" v-if="posts != []">
             <v-container>
-              <v-row>
-                <v-col cols="6" v-for="(post,i) in posts" :key="i">
+              <transition-group name="fade" tag="div" class="row">
+                <v-col cols="6" v-for="post in posts" :key="posts.indexOf(post)">
                   <Post
                     @updatePosts="updatePosts($event)"
                     :image="post.image"
@@ -18,7 +18,7 @@
                     :text="post.text"
                   />
                 </v-col>
-              </v-row>
+              </transition-group>
             </v-container>
           </v-col>
         </v-row>
@@ -54,3 +54,15 @@ export default {
   },
 }
 </script>
+
+<style scoped>
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
+</style>
