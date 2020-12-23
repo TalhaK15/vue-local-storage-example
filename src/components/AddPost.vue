@@ -99,7 +99,7 @@ export default {
   },
   computed: {
     valid() {
-      if (this.title && this.text && this.image != "") return true
+      if (this.title && this.text != "") return true
       else return false
     },
   },
