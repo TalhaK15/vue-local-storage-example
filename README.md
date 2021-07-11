@@ -1,6 +1,6 @@
 # vue-local-storage-example
 
-Live Demo : https://talhabw-vuelocalstorage.netlify.app
+Live Demo : https://vue-local-storage-example.vercel.app/
 
 ## Project setup
 
